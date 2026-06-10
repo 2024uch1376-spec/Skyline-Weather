@@ -1,0 +1,1710 @@
+/* ==========================================================================
+   Variables & Theme Setup
+   ========================================================================== */
+:root {
+    --bg-primary: #0a0d1a;
+    --card-bg: rgba(30, 41, 59, 0.45);
+    --card-bg-hover: rgba(30, 41, 59, 0.6);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-color-hover: rgba(255, 255, 255, 0.15);
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --primary-accent: #6366f1; /* Indigo */
+    --secondary-accent: #06b6d4; /* Cyan */
+    --accent-glow: rgba(99, 102, 241, 0.3);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==========================================================================
+   Ambient Background Glows
+   ========================================================================== */
+.background-glows {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.25;
+    mix-blend-mode: screen;
+}
+
+.glow-1 {
+    top: -10%;
+    left: 15%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, var(--primary-accent) 0%, transparent 70%);
+}
+
+.glow-2 {
+    bottom: 10%;
+    right: 5%;
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, var(--secondary-accent) 0%, transparent 70%);
+}
+
+.glow-3 {
+    top: 40%;
+    left: 45%;
+    width: 35vw;
+    height: 35vw;
+    background: radial-gradient(circle, #d946ef 0%, transparent 70%);
+    opacity: 0.15;
+}
+
+/* ==========================================================================
+   Layout Containers
+   ========================================================================== */
+.app-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ==========================================================================
+   Sidebar Styles
+   ========================================================================== */
+.sidebar {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid var(--border-color);
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    z-index: 10;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-logo {
+    width: 32px;
+    height: 32px;
+    color: var(--secondary-accent);
+}
+
+.brand-name {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    border: 1px solid transparent;
+}
+
+.nav-item:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+    color: var(--text-primary);
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.25);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+}
+
+.nav-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+.main-content {
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    overflow-y: auto;
+}
+
+/* ==========================================================================
+   Top Header Bar
+   ========================================================================== */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 12px 20px;
+    border-radius: 16px;
+    width: 380px;
+    transition: var(--transition-smooth);
+}
+
+.search-box:focus-within {
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+    background: var(--card-bg-hover);
+}
+
+.search-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--text-secondary);
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 15px;
+    width: 100%;
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
+
+.top-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.unit-toggle {
+    display: flex;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 4px;
+    border-radius: 12px;
+}
+
+.unit-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-secondary);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: var(--transition-smooth);
+}
+
+.unit-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+}
+
+.profile-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+.profile-badge:hover {
+    transform: scale(1.05);
+    border-color: var(--secondary-accent);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--bg-primary);
+}
+
+/* ==========================================================================
+   Shared Dashboard Cards
+   ========================================================================== */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 24px;
+    transition: var(--transition-smooth);
+}
+
+.card:hover {
+    border-color: var(--border-color-hover);
+    background: var(--card-bg-hover);
+}
+
+/* ==========================================================================
+   Dashboard Grid Structures
+   ========================================================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 32px;
+}
+
+.grid-col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.grid-col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* ==========================================================================
+   Current Weather Card
+   ========================================================================== */
+.current-weather-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.05) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.weather-main-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.location-name {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+.weather-meta {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.temperature-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.temperature {
+    font-size: 84px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -3px;
+    background: linear-gradient(180deg, #fff 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.temp-unit {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 10px;
+    margin-left: 4px;
+}
+
+.weather-condition {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.high-low-container {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.high-low-container .divider {
+    color: var(--border-color);
+}
+
+.aqi-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.aqi-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--text-muted);
+    box-shadow: 0 0 8px currentColor;
+    display: inline-block;
+    transition: var(--transition-smooth);
+}
+
+.weather-illustration {
+    width: 140px;
+    height: 140px;
+}
+
+.current-weather-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Animations for Weather Icons */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes spin-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.animated-cloud path {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animated-cloud circle {
+    animation: spin-slow 20s linear infinite;
+    transform-origin: 38px 22px;
+}
+
+.weather-moon {
+    filter: drop-shadow(0 0 10px rgba(241, 245, 249, 0.6));
+    transition: var(--transition-smooth);
+}
+
+.weather-moon-behind-cloud {
+    filter: drop-shadow(0 0 8px rgba(241, 245, 249, 0.45));
+    transition: var(--transition-smooth);
+}
+
+/* ==========================================================================
+   Hourly Forecast Card
+   ========================================================================== */
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.hourly-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.hourly-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 14px;
+    border-radius: 18px;
+    min-width: 80px;
+    flex: 1;
+    transition: var(--transition-smooth);
+    border: 1px solid transparent;
+}
+
+.hourly-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--border-color);
+}
+
+.hourly-item.active {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(99, 102, 241, 0.25);
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.02);
+}
+
+.hour-time {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.hourly-icon {
+    width: 36px;
+    height: 36px;
+}
+
+.hour-temp {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Detailed Weather Metrics
+   ========================================================================== */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.detail-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--secondary-accent);
+}
+
+.detail-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.detail-value {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.detail-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Weekly Forecast Card (7-Day Outlook)
+   ========================================================================== */
+.weekly-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.weekly-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.weekly-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.day-name {
+    font-size: 15px;
+    font-weight: 600;
+    width: 70px;
+}
+
+.weekly-condition-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.weekly-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.temp-slider-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    justify-content: flex-end;
+    max-width: 180px;
+}
+
+.min-temp, .max-temp {
+    font-size: 14px;
+    font-weight: 600;
+    width: 30px;
+    text-align: right;
+}
+
+.min-temp {
+    color: var(--text-secondary);
+}
+
+.temp-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    flex: 1;
+    position: relative;
+}
+
+.temp-bar-active {
+    position: absolute;
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--secondary-accent) 0%, var(--primary-accent) 100%);
+}
+
+/* ==========================================================================
+   Saved Locations Card
+   ========================================================================== */
+.locations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.location-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.location-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.06);
+    transform: translateX(4px);
+}
+
+.loc-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.loc-country {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.loc-city {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.loc-temp {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.loc-value {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.loc-condition {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Responsive Media Queries
+   ========================================================================== */
+
+/* Tablet & Smaller Laptops */
+@media (max-width: 1024px) {
+    .app-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        display: none; /* In a real app we would make a responsive slide-out navbar */
+    }
+    
+    .main-content {
+        padding: 30px;
+    }
+}
+
+/* Standard Mobile Layouts */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 20px;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    .top-actions {
+        justify-content: space-between;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .weather-main-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .weather-illustration {
+        align-self: center;
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* ==========================================================================
+   SPA View Switching
+   ========================================================================== */
+.view-section {
+    display: none;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.view-section.active-view {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.view-header {
+    margin-bottom: 24px;
+}
+
+.view-title {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+.view-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Weather Map View
+   ========================================================================== */
+.map-card {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.map-controls {
+    display: flex;
+    gap: 12px;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(15, 23, 42, 0.2);
+}
+
+.map-layer-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 10px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.map-layer-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.map-layer-btn.active {
+    background: var(--primary-accent);
+    color: var(--text-primary);
+    border-color: var(--primary-accent);
+    box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.map-viewport {
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    background: #0d1222;
+}
+
+.weather-map-mock {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+.map-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.radar-scan {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, rgba(6, 182, 212, 0.15) 0deg, rgba(6, 182, 212, 0) 120deg);
+    pointer-events: none;
+    animation: radar-sweep 8s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes radar-sweep {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes radar-pulse {
+    0% { r: 10px; opacity: 0.8; }
+    100% { r: 90px; opacity: 0; }
+}
+
+.radar-circle-1 {
+    animation: radar-pulse 3s infinite linear;
+    transform-origin: 250px 160px;
+}
+
+.radar-circle-2 {
+    animation: radar-pulse 4s infinite linear 1.5s;
+    transform-origin: 480px 220px;
+}
+
+/* Markers */
+.weather-marker {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.marker-temp {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.marker-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+.marker-1 { top: 35%; left: 28%; }
+.marker-2 { top: 25%; left: 52%; }
+.marker-3 { top: 15%; left: 75%; }
+.marker-4 { top: 55%; left: 62%; }
+
+.map-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px;
+    background: rgba(15, 23, 42, 0.3);
+    border-top: 1px solid var(--border-color);
+}
+
+.legend-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.legend-gradient {
+    width: 150px;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, rgba(6,182,212,0.1), #06b6d4, #6366f1, #d946ef);
+}
+
+/* ==========================================================================
+   Saved Cities View
+   ========================================================================== */
+.cities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.add-city-card {
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 180px;
+    cursor: pointer;
+    background: transparent;
+    transition: var(--transition-smooth);
+}
+
+.add-city-card:hover {
+    border-color: var(--primary-accent);
+    background: rgba(99, 102, 241, 0.03);
+}
+
+.add-city-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.add-icon {
+    width: 36px;
+    height: 36px;
+    color: var(--text-secondary);
+    transition: var(--transition-smooth);
+}
+
+.add-city-card:hover .add-icon {
+    color: var(--primary-accent);
+    transform: scale(1.1);
+}
+
+.add-city-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.add-city-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.city-weather-card {
+    position: relative;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.city-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.city-card-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.city-card-header p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.local-time {
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.05);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.city-card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.city-temp {
+    font-size: 36px;
+    font-weight: 800;
+}
+
+.city-weather-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.city-card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.remove-city-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    display: none;
+    transition: var(--transition-smooth);
+}
+
+.city-weather-card:hover .remove-city-btn {
+    display: block;
+}
+
+.remove-city-btn:hover {
+    color: #ef4444;
+}
+
+/* ==========================================================================
+   Settings View
+   ========================================================================== */
+.settings-card {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 800px;
+}
+
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.settings-group:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.settings-group h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--secondary-accent);
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.setting-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.setting-label {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.setting-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.settings-select {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 10px 16px;
+    border-radius: 12px;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    min-width: 180px;
+}
+
+.settings-select option {
+    background: #0f172a;
+    color: var(--text-primary);
+}
+
+.theme-options {
+    display: flex;
+    gap: 12px;
+}
+
+.theme-opt-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 10px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-smooth);
+}
+
+.theme-opt-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-color-hover);
+}
+
+.theme-opt-btn.active {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--text-primary);
+    border-color: var(--primary-accent);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-indigo { background: #6366f1; }
+.dot-sunset { background: #f97316; }
+.dot-aurora { background: #10b981; }
+
+/* Switch Toggle slider styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.08);
+    transition: .4s;
+    border-radius: 34px;
+    border: 1px solid var(--border-color);
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--text-secondary);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: var(--primary-accent);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(22px);
+    background-color: var(--text-primary);
+}
+
+.settings-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.save-settings-btn {
+    background: var(--primary-accent);
+    color: var(--text-primary);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.save-settings-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* ==========================================================================
+   Leaflet Map Styling overrides
+   ========================================================================== */
+#leaflet-map {
+    background: #0d1222;
+}
+
+/* Override standard leaflet tooltip/popup styles to match dark glassmorphic design */
+.leaflet-popup-content-wrapper {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--text-primary) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    padding: 6px;
+}
+
+.leaflet-popup-tip {
+    background: rgba(15, 23, 42, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaflet-popup-content {
+    margin: 8px 12px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+/* Custom styles inside the popup */
+.map-popup-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 160px;
+}
+
+.map-popup-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.map-popup-temp {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--secondary-accent);
+}
+
+.map-popup-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: capitalize;
+}
+
+.map-popup-btn {
+    background: var(--primary-accent);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    transition: var(--transition-smooth);
+    margin-top: 4px;
+    width: 100%;
+}
+
+.map-popup-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+/* Leaflet Zoom control styling */
+.leaflet-bar {
+    border: 1px solid var(--border-color) !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+}
+
+.leaflet-bar a {
+    background-color: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    transition: var(--transition-smooth);
+}
+
+.leaflet-bar a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: var(--text-primary) !important;
+}
+
+.leaflet-bar a.leaflet-disabled {
+    background-color: rgba(15, 23, 42, 0.4) !important;
+    color: var(--text-muted) !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    color: var(--text-muted) !important;
+    padding: 8px 8px 0 0 !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+    color: #ef4444 !important;
+}
+
+/* Custom styling overrides for Leaflet Layer Switcher Control */
+.leaflet-control-layers {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    border-radius: 12px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 12px !important;
+    padding: 10px 14px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.leaflet-control-layers-list label {
+    margin-bottom: 6px !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.leaflet-control-layers-list label:last-child {
+    margin-bottom: 0 !important;
+}
+
+.leaflet-control-layers-selector {
+    accent-color: var(--primary-accent) !important;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   Dynamic Sky Avatar Themes & Keyframe Animations
+   ========================================================================== */
+.profile-badge.sky-sunny {
+    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%) !important;
+}
+
+.profile-badge.sky-night {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%) !important;
+}
+
+.profile-badge.sky-rain {
+    background: linear-gradient(135deg, #334155 0%, #475569 100%) !important;
+}
+
+.profile-badge.sky-storm {
+    background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%) !important;
+}
+
+.profile-badge.sky-cloudy {
+    background: linear-gradient(135deg, #475569 0%, #64748b 100%) !important;
+}
+
+.avatar-sky-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Animations inside the Sky Avatar */
+.avatar-sun {
+    animation: avatar-spin-sun 12s linear infinite;
+    transform-origin: 20px 20px;
+}
+
+@keyframes avatar-spin-sun {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.avatar-moon {
+    animation: avatar-moon-pulse 4s ease-in-out infinite;
+    transform-origin: 20px 20px;
+}
+
+@keyframes avatar-moon-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.95; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+.avatar-drop {
+    animation: avatar-rain-fall 1.5s infinite linear;
+}
+
+.avatar-drop.delay-1 {
+    animation-delay: 0.5s;
+}
+
+.avatar-drop.delay-2 {
+    animation-delay: 1.0s;
+}
+
+@keyframes avatar-rain-fall {
+    0% { transform: translateY(-5px); opacity: 0; }
+    30% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(8px); opacity: 0; }
+}
+
+.avatar-lightning {
+    animation: avatar-lightning-flash 3.5s infinite linear;
+}
+
+@keyframes avatar-lightning-flash {
+    0%, 88%, 93%, 100% { opacity: 0; }
+    90%, 95% { opacity: 1; }
+}
+
+.avatar-cloud-drift {
+    animation: avatar-cloud-drift-move 5s ease-in-out infinite;
+}
+
+@keyframes avatar-cloud-drift-move {
+    0%, 100% { transform: translateX(0px); }
+    50% { transform: translateX(2px); }
+}
+
+/* ==========================================================================
+   Theme Presets Override
+   ========================================================================== */
+body.theme-sunset {
+    --bg-primary: #120907;
+    --primary-accent: #f97316; /* Warm Orange */
+    --secondary-accent: #ec4899; /* Deep Rose Pink */
+    --accent-glow: rgba(249, 115, 22, 0.25);
+    --card-bg: rgba(45, 25, 20, 0.45);
+    --card-bg-hover: rgba(45, 25, 20, 0.6);
+}
+
+body.theme-aurora {
+    --bg-primary: #040e0b;
+    --primary-accent: #10b981; /* Emerald Green */
+    --secondary-accent: #06b6d4; /* Vivid Cyan */
+    --accent-glow: rgba(16, 185, 129, 0.25);
+    --card-bg: rgba(15, 35, 30, 0.45);
+    --card-bg-hover: rgba(15, 35, 30, 0.6);
+}
+
+/* ==========================================================================
+   Toast Notifications Styling
+   ========================================================================== */
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    width: 360px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    animation: toastSlideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+               toastFadeOut 0.5s ease forwards;
+    animation-delay: 0s, 7.5s; /* Auto-fade out after 7.5s */
+    transition: var(--transition-smooth);
+}
+
+.toast.toast-severe {
+    border-left: 4px solid #ef4444; /* Red border */
+    background: rgba(30, 10, 10, 0.9);
+    border-color: rgba(239, 68, 68, 0.2) rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.1) rgba(239, 68, 68, 0.9);
+}
+
+.toast.toast-summary {
+    border-left: 4px solid #6366f1; /* Indigo border */
+    background: rgba(10, 15, 30, 0.9);
+    border-color: rgba(99, 102, 241, 0.2) rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.1) rgba(99, 102, 241, 0.9);
+}
+
+.toast-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.toast-severe .toast-icon {
+    color: #ef4444;
+}
+
+.toast-summary .toast-icon {
+    color: #6366f1;
+}
+
+.toast-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.toast-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.toast-message {
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.4;
+}
+
+.toast-close {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0;
+    margin-left: 4px;
+    transition: var(--transition-smooth);
+}
+
+.toast-close:hover {
+    color: #94a3b8;
+}
+
+@keyframes toastSlideIn {
+    from {
+        transform: translateX(120%) translateY(0);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes toastFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; transform: translateY(-10px); pointer-events: none; }
+}
+
+/* ==========================================================================
+   Rain Overlay Background Effect
+   ========================================================================== */
+.rain-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.rain-overlay.active {
+    opacity: 1;
+}
+
+.raindrop {
+    position: absolute;
+    background: linear-gradient(transparent, rgba(56, 189, 248, 0.4));
+    width: 1px;
+    height: 60px;
+    opacity: 0.7;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-80px) rotate(15deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(15deg);
+    }
+}
+
+/* ==========================================================================
+   Ice / Snow Overlay Background Effect
+   ========================================================================== */
+.ice-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.ice-overlay.active {
+    opacity: 1;
+}
+
+.iceball {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.1) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: drift linear infinite;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+}
+
+@keyframes drift {
+    0% {
+        transform: translateY(-20px) translateX(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(50vh) translateX(20px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(100vh) translateX(-10px) rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Lightning Flash Background Effect
+   ========================================================================== */
+.lightning-flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    mix-blend-mode: color-dodge;
+}
+
+@keyframes flash {
+    0%, 100% { opacity: 0; }
+    5%, 15% { opacity: 0.8; }
+    10% { opacity: 0; }
+    12% { opacity: 0.95; }
+    20% { opacity: 0; }
+}
